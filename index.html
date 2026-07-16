@@ -4,36 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Task Manager</h1>
-
     
-    <div>
-        <h3>Add a New Task</h3>
-        <input type="text" id="taskInput" placeholder="What do you need to do?">
-        <button id="addBtn">Add Task</button>
+    <div class="container">
+        <h1>Task Manager by Kie</h1>
+
+        <div>
+            <h3>Add a New Task</h3>
+            <input type="text" id="taskInput" placeholder="What do you need to do?">
+            <button id="addBtn">Add Task</button>
+        </div>
+
+        <hr>
+
+        <div>
+            <h3>Search & Filter</h3>
+            <input type="text" id="searchInput" placeholder="Search tasks by title...">
+            
+            <select id="filterSelect">
+                <option value="All">All</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+
+        <hr>
+
+        <h3>Your Tasks</h3>
+        <div id="taskList"></div>
     </div>
-
-    <hr>
-
-    
-    <div>
-        <h3>Search & Filter</h3>
-        <input type="text" id="searchInput" placeholder="Search tasks by title...">
-        
-        <select id="filterSelect">
-            <option value="All">All</option>
-            <option value="Pending">Pending</option>
-            <option value="Completed">Completed</option>
-        </select>
-    </div>
-
-    <hr>
-
-    
-    <h3>Your Tasks</h3>
-    <div id="taskList"></div>
 
     <script src="script.js"></script>
 </body>

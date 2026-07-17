@@ -39,7 +39,7 @@ function renderTasks() {
                 <strong>${task.title}</strong> - Status: <em>${task.status}</em>
                 <br>
                 <button onclick="toggleStatus(${task.id})">Mark as ${task.status === 'Pending' ? 'Completed' : 'Pending'}</button>
-                <button onclick="editTask(${task.id})">Edit Title</button>
+                <button onclick="openEditModal(${task.id})">Edit Title</button>
                 <button onclick="deleteTask(${task.id})">Delete</button>
             </p>
         `;
@@ -72,6 +72,13 @@ document.getElementById('addBtn').addEventListener('click', () => {
     renderTasks(); 
     
     titleInput.value = ''; 
+});
+
+
+document.getElementById('taskInput').addEventListener('keypress',function(event){
+    if (event.key === 'Enter') {
+        document.getElementById('addBtn').click();
+    }
 });
 
 
@@ -113,7 +120,38 @@ function toggleStatus(id) {
     renderTasks();
 }
 
+let currentEditId = null; 
+const editModal = document.getElementById('editModal');
+const editTaskInput = document.getElementById('editTaskInput');
 
+// Open the custom modal instead of the browser prompt
+function openEditModal(id) {
+    const taskToEdit = tasks.find(task => task.id === id);
+    currentEditId = id; 
+    
+    editTaskInput.value = taskToEdit.title; 
+    editModal.style.display = 'flex'; 
+    editTaskInput.focus(); 
+}
+
+// The "Save" button inside the modal
+document.getElementById('saveEditBtn').addEventListener('click', () => {
+    const newTitle = editTaskInput.value;
+    
+    if (newTitle.trim() !== '') {
+        const taskToEdit = tasks.find(task => task.id === currentEditId);
+        taskToEdit.title = newTitle;
+        
+        saveTasks();
+        renderTasks();
+        editModal.style.display = 'none'; 
+    }
+});
+
+// The "Cancel" button inside the modal
+document.getElementById('cancelEditBtn').addEventListener('click', () => {
+    editModal.style.display = 'none'; 
+});
 
 
 document.getElementById('searchInput').addEventListener('input', renderTasks);

@@ -35,6 +35,17 @@
 
         <h3>Your Tasks</h3>
         <div id="taskList"></div>
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <h3>Edit Task</h3>
+                    <label for="editTaskInput">New Title:</label>
+                    <input type="text" id="editTaskInput">
+                    <div class="modal-buttons">
+                        <button id="saveEditBtn">Save</button>
+                        <button id="cancelEditBtn" style="background-color: var(--danger-color);">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
